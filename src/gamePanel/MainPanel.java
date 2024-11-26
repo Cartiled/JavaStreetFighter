@@ -1,6 +1,8 @@
 package gamePanel;
 
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 import java.io.File;
@@ -13,6 +15,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import pojo.Characters;
+import threads.KeyHandler;
+
 
 
 public class MainPanel extends JPanel {
@@ -22,9 +27,20 @@ public class MainPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
+	private int originalTileSize = 16;
+	private int scale = 3;
+	public int tileSize = originalTileSize * scale;
 	private JLabel backgroundLabel = null;
 	private ImageIcon backgroudImage;
-
+	private KeyHandler keyH = new KeyHandler();
+	private Characters character = new Characters(this,keyH);
+	
+	//posicion de jugador por defecto
+	
+	public int playerX = 100;
+	public int playerY = 100;
+	public int playerSpeed = 4;
+	
 	public MainPanel() {
 
 		panel = new JPanel();
@@ -34,6 +50,8 @@ public class MainPanel extends JPanel {
 		backgroundLabel = new JLabel(getImage());
 		backgroundLabel.setBounds(0, -20, 1025, 665);
 		panel.add(backgroundLabel);
+		panel.addKeyListener(keyH);
+		panel.setFocusable(true);
 
 	}
 	
@@ -50,6 +68,14 @@ public class MainPanel extends JPanel {
 			e.printStackTrace();
 		}
 		return backgroudImage;
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		Graphics g2 = (Graphics2D)g;
+		character.draw((Graphics2D) g2);
+		g2.dispose();
 	}
 
 	public JPanel getPanel() {
