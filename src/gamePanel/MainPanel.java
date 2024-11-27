@@ -1,6 +1,5 @@
 package gamePanel;
 
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -17,8 +16,7 @@ import javax.swing.JPanel;
 
 import pojo.Characters;
 import threads.KeyHandler;
-
-
+import threads.MovementThreads;
 
 public class MainPanel extends JPanel {
 
@@ -33,14 +31,14 @@ public class MainPanel extends JPanel {
 	private JLabel backgroundLabel = null;
 	private ImageIcon backgroudImage;
 	private KeyHandler keyH = new KeyHandler();
-	private Characters character = new Characters(this,keyH);
-	
-	//posicion de jugador por defecto
-	
+	private Characters character = new Characters(this, keyH);
+	private MovementThreads movmentThreads = new MovementThreads(this, keyH, character);
+
+
 	public int playerX = 100;
 	public int playerY = 100;
 	public int playerSpeed = 4;
-	
+
 	public MainPanel() {
 
 		panel = new JPanel();
@@ -52,30 +50,33 @@ public class MainPanel extends JPanel {
 		panel.add(backgroundLabel);
 		panel.addKeyListener(keyH);
 		panel.setFocusable(true);
+		
+		movmentThreads.start();
 
 	}
-	
+
 	private ImageIcon getImage() {
 		try {
 			File f = new File("resources/GameBackround.gif");
 			URL img = f.toURL();
 			backgroudImage = new ImageIcon(img);
 			backgroudImage.setImage(backgroudImage.getImage().getScaledInstance(1025, 610, Image.SCALE_DEFAULT));
-			
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return backgroudImage;
 	}
-	
+
+
 	public void paintComponent(Graphics g) {
+		System.out.println("la imagen debe aparecer");
 		super.paintComponent(g);
-		
-		Graphics g2 = (Graphics2D)g;
+		Graphics g2 = (Graphics2D) g;
 		character.draw((Graphics2D) g2);
 		g2.dispose();
+		
 	}
 
 	public JPanel getPanel() {

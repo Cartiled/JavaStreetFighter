@@ -1,6 +1,5 @@
 package threads;
 
-import java.awt.Graphics;
 
 import gamePanel.MainPanel;
 import pojo.Characters;
@@ -12,9 +11,10 @@ public class MovementThreads extends Thread {
 	private Characters character;
 	public int FPS = 60;
 
-	public MovementThreads(MainPanel mainPanel, KeyHandler keyHandler) {
+	public MovementThreads(MainPanel mainPanel, KeyHandler keyHandler,Characters character) {
 		this.mainPanel = mainPanel;
 		this.keyHandler = keyHandler;
+		this.character = character;
 	}
 
 	public void run() {
@@ -25,6 +25,7 @@ public class MovementThreads extends Thread {
 			
 			
 			update();
+			mainPanel.revalidate();
 			mainPanel.repaint();
 			
 			try {
@@ -41,19 +42,7 @@ public class MovementThreads extends Thread {
 			
 		}
 	}
-	public void run2() {
-		double drawInterval = 1000000000/FPS;
-		
-		while(Thread.currentThread() != null) {
-			
-			update();
-			mainPanel.repaint();
-			
-		}
-	}
-
 	public void update() {
-
 		character.update();
 
 	}
