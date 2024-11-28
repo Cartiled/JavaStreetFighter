@@ -22,7 +22,7 @@ public class MainFrame extends JFrame {
 		
 		mainPanel= new MainPanel();
 		
-		frame.add(mainPanel.getPanel());
+		frame.add(mainPanel);
 		
 
 		frame.setVisible(true);
