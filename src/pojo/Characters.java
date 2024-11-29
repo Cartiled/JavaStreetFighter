@@ -1,6 +1,5 @@
 package pojo;
 
-
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -15,12 +14,12 @@ public class Characters {
 	public int x, y;
 	public int speed;
 	private int spriteCount = 0;
-	private int spriteNum = 0;
+	private int spriteNum = 1;
 	public String direction;
 	MainPanel mainPanel;
 	KeyHandler keyHandler;
-	private HashMap<String,BufferedImage> images = null;
-	
+	private HashMap<String, BufferedImage> images = null;
+
 	public Characters(MainPanel mainPanel, KeyHandler keyHandler) {
 		this.mainPanel = mainPanel;
 		this.keyHandler = keyHandler;
@@ -53,12 +52,34 @@ public class Characters {
 		} else if (keyHandler.leftPressed == true) {
 
 			direction = "left";
-			x -=speed;
+			x -= speed;
 		} else if (keyHandler.rightPressed == true) {
 			direction = "right";
 			x += speed;
 		}
-
+		spriteCount++;
+		if (spriteCount < 10) {
+			if (spriteNum == 1) {
+				spriteNum = 2;
+			} else if (spriteNum == 2) {
+				spriteNum = 3;
+			} else if (spriteNum == 3) {
+				spriteNum = 4;
+			} else if (spriteNum == 4) {
+				spriteNum = 5;
+			} else if (spriteNum == 5) {
+				spriteNum = 6;
+			} else if (spriteNum == 6) {
+				spriteNum = 7;
+			} else if (spriteNum == 7) {
+				spriteNum = 8;
+			} else if (spriteNum == 8) {
+				spriteNum = 9;
+			} else if (spriteNum == 9) {
+				spriteNum = 1;
+			}
+		}
+		spriteCount = 0;
 	}
 
 	public void draw(Graphics2D g2) {
@@ -67,17 +88,39 @@ public class Characters {
 
 		switch (direction) {
 		case "up":
-			
-			image = images.get("onFeet1");
+
+			image = images.get("onFeet2");
 			break;
 		case "down":
-			image = images.get("onFeet3");;
+			image = images.get("onFeet3");
+			;
 			break;
 		case "left":
 			image = images.get("onFeet4");
+
 			break;
 		case "right":
-			image = images.get("onFeet2");
+			if (spriteNum == 1) {
+				image = images.get("onFeet1");
+
+			} else if (spriteNum == 2) {
+
+				image = images.get("onFeet2");
+			} else if (spriteNum == 3) {
+				image = images.get("onFeet3");
+			} else if (spriteNum == 4) {
+				image = images.get("onFeet4");
+			} else if (spriteNum == 5) {
+				image = images.get("onFeet5");
+			} else if (spriteNum == 6) {
+				image = images.get("onFeet6");
+			} else if (spriteNum == 7) {
+				image = images.get("onFeet7");
+			} else if (spriteNum == 8) {
+				image = images.get("onFeet6");
+			} else if (spriteNum == 9) {
+				image = images.get("onFeet9");
+			}
 			break;
 		}
 		g2.drawImage(image, x, y, mainPanel.tileSize, mainPanel.tileSize, null);

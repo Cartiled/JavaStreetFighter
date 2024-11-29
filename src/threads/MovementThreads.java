@@ -25,7 +25,6 @@ public class MovementThreads extends Thread {
 		long timer = 0;
 		
 		while (Thread.currentThread() != null) {
-			System.out.println("game loop");
 			currentTime = System.nanoTime();
 			delta += (currentTime - lastTime) / drawInterval;
 			timer += (currentTime - lastTime);
@@ -34,11 +33,10 @@ public class MovementThreads extends Thread {
 				update();
 				mainPanel.repaint();
 				delta--;
-				drawCount++;
+
 			}
 			if (timer >= 1000000000) {
-				System.out.println("FPS:" + drawCount);
-				drawCount = 0;
+
 				timer = 0;
 			}
 		}

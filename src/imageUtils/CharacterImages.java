@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.imageio.ImageIO;
@@ -23,7 +22,6 @@ public class CharacterImages {
 		for (int i = 0; i < names.length; i++) {
 			BufferedImage bf = ImageIO.read(new FileInputStream(new File("resources/Yagami/"+names[i]+".png")));
 			ret.put(names[i], bf);
-		
 		}
 		
 		}catch( IOException e){
