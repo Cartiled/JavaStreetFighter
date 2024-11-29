@@ -45,10 +45,11 @@ public class KeyHandler implements KeyListener {
 			leftPressed = false;
 		}
 		if(code == KeyEvent.VK_D) {
-			downPressed = false;
+			rightPressed = false;
 		}
 		if(code == KeyEvent.VK_S) {
-			rightPressed = false;
+			
+			downPressed = false;
 		}
 
 	}

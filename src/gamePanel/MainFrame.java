@@ -19,7 +19,8 @@ public class MainFrame extends JFrame {
 		frame.setBounds(0,0,1025,660);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
+		frame.setResizable(false);
+
 		mainPanel= new MainPanel();
 		
 		frame.add(mainPanel);

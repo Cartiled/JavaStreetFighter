@@ -1,6 +1,5 @@
 package threads;
 
-
 import gamePanel.MainPanel;
 import pojo.Characters;
 
@@ -11,37 +10,40 @@ public class MovementThreads extends Thread {
 	private Characters character;
 	public int FPS = 60;
 
-	public MovementThreads(MainPanel mainPanel, KeyHandler keyHandler,Characters character) {
+	public MovementThreads(MainPanel mainPanel, KeyHandler keyHandler, Characters character) {
 		this.mainPanel = mainPanel;
 		this.keyHandler = keyHandler;
 		this.character = character;
 	}
 
 	public void run() {
+		int drawCount = 0;
+		long lastTime = System.nanoTime();
+		long currentTime;
+		double delta = 0;
+		double drawInterval = 1000000000 / FPS;
+		long timer = 0;
 		
-		double drawInterval = 1000000000/FPS;
-		double nextDrawTime = System.nanoTime() + drawInterval;	
-		while(Thread.currentThread() != null) {
-			
-			
-			update();
-			mainPanel.revalidate();
-			mainPanel.repaint();
-			
-			try {
-				double remainTime = nextDrawTime - System.nanoTime();
-				remainTime = remainTime/1000000;
-				if(remainTime < 0) {
-					remainTime = 0;
-				}
-				Thread.sleep((long) remainTime);
-				nextDrawTime += drawInterval;
-			}catch (InterruptedException e){
-				e.printStackTrace();
+		while (Thread.currentThread() != null) {
+			System.out.println("game loop");
+			currentTime = System.nanoTime();
+			delta += (currentTime - lastTime) / drawInterval;
+			timer += (currentTime - lastTime);
+			lastTime = currentTime;
+			if (delta >= 1) {
+				update();
+				mainPanel.repaint();
+				delta--;
+				drawCount++;
 			}
-			
+			if (timer >= 1000000000) {
+				System.out.println("FPS:" + drawCount);
+				drawCount = 0;
+				timer = 0;
+			}
 		}
 	}
+
 	public void update() {
 		character.update();
 

@@ -17,11 +17,16 @@ import threads.MovementThreads;
 public class MainPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	private int originalTileSize = 16;
 	private int scale = 3;
 	public int tileSize = originalTileSize * scale;
-
+	public int maxScreenCol = 22;
+	public int masScreenRow = 14;
+	
+	public int screenWidth = tileSize* maxScreenCol;
+	public int screenHeight = tileSize * masScreenRow;
+	
 	private Image backgroundImage;
 	private KeyHandler keyH = new KeyHandler();
 	private Characters character = new Characters(this, keyH);
@@ -34,7 +39,7 @@ public class MainPanel extends JPanel {
 	public MainPanel() {
 
 		this.setLayout(null);
-		this.setBounds(0, 0, 1025, 660);
+		this.setBounds(0, 0, screenWidth, screenHeight);
 
 		loadBackgroundImage();
 
@@ -58,11 +63,9 @@ public class MainPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-
 		if (backgroundImage != null) {
 			g.drawImage(backgroundImage, 0, 0, this.getWidth(), this.getHeight(), null);
 		}
-
 		Graphics2D g2 = (Graphics2D) g;
 		character.draw(g2);
 
