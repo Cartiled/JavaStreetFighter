@@ -21,8 +21,8 @@ public class MainPanel extends JPanel {
 	private int originalTileSize = 16;
 	private int scale = 3;
 	public int tileSize = originalTileSize * scale;
-	public int maxScreenCol = 22;
-	public int masScreenRow = 14;
+	public int maxScreenCol = 24;
+	public int masScreenRow = 18;
 	
 	public int screenWidth = tileSize* maxScreenCol;
 	public int screenHeight = tileSize * masScreenRow;

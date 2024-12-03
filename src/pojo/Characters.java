@@ -29,7 +29,7 @@ public class Characters {
 
 	public void setDefaultValues() {
 		x = 100;
-		y = 500;
+		y = 600;
 		speed = 4;
 		direction = "right";
 
@@ -102,9 +102,7 @@ public class Characters {
 		case "right":
 			if (spriteNum == 1) {
 				image = images.get("onFeet1");
-
 			} else if (spriteNum == 2) {
-
 				image = images.get("onFeet2");
 			} else if (spriteNum == 3) {
 				image = images.get("onFeet3");

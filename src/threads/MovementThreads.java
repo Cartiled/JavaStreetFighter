@@ -35,6 +35,12 @@ public class MovementThreads extends Thread {
 				delta--;
 
 			}
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+				return;
+			}
 			if (timer >= 1000000000) {
 
 				timer = 0;
