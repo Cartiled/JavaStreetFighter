@@ -10,7 +10,7 @@ public class KeyHandler implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		int code = e.getKeyCode();
+		int code = e.getKeyChar();
 
 		if (code == KeyEvent.VK_J) {
 			lightAttack = true;
@@ -18,7 +18,6 @@ public class KeyHandler implements KeyListener {
 		}
 		if (code == KeyEvent.VK_K) {
 			kickAttack = true;
-
 		}
 
 	}
@@ -59,6 +58,14 @@ public class KeyHandler implements KeyListener {
 		if (code == KeyEvent.VK_S) {
 
 			downPressed = false;
+		}
+		if (code == KeyEvent.VK_J) {
+			lightAttack = false;
+
+		}
+		if (code == KeyEvent.VK_K) {
+			kickAttack = false;
+
 		}
 
 	}

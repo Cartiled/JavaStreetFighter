@@ -39,11 +39,31 @@ public class Characters {
 		images = new CharacterImages().loadCharacterImage();
 	}
 
+	public void attack() {
+		if (keyHandler.lightAttack == true) {
+			System.out.println("light attack");
+		}
+		if (keyHandler.kickAttack == true) {
+			System.out.println("kick attack");
+		}
+		if (keyHandler.lightAttack == true && keyHandler.downPressed == true) {
+			System.out.println("down light attack");
+		}
+		if (keyHandler.lightAttack ==true && keyHandler.upPressed == true) {
+			System.out.println("jump light attack");
+		}
+		if (keyHandler.kickAttack == true && keyHandler.upPressed == true) {
+			System.out.println("jump kick");
+		}
+		if (keyHandler.kickAttack == true && keyHandler.downPressed == true) {
+			System.out.println("down kick");
+		}
+	}
+
 	public void update() {
 		if (keyHandler.upPressed == true) {
 			direction = "up";
 			y -= speed;
-
 		} else if (keyHandler.downPressed == true) {
 
 			direction = "down";
@@ -88,12 +108,11 @@ public class Characters {
 
 		switch (direction) {
 		case "up":
-
 			image = images.get("onFeet2");
 			break;
 		case "down":
 			image = images.get("onFeet3");
-			;
+
 			break;
 		case "left":
 			image = images.get("onFeet4");

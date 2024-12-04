@@ -30,7 +30,7 @@ public class MainPanel extends JPanel {
 	private Image backgroundImage;
 	private KeyHandler keyH = new KeyHandler();
 	private Characters character = new Characters(this, keyH);
-	private MovementThreads movementThreads = new MovementThreads(this, keyH, character);
+	private MovementThreads movementThreads = new MovementThreads(this,character);
 
 	public int playerX = 100;
 	public int playerY = 100;
@@ -52,9 +52,10 @@ public class MainPanel extends JPanel {
 	private void loadBackgroundImage() {
 		try {
 			File f = new File("resources/GameBackround.gif");
+			@SuppressWarnings("deprecation")
 			URL img = f.toURL();
 			ImageIcon imageIcon = new ImageIcon(img);
-			backgroundImage = imageIcon.getImage().getScaledInstance(1025, 665, Image.SCALE_DEFAULT);
+			backgroundImage = imageIcon.getImage().getScaledInstance(screenWidth, screenHeight, Image.SCALE_DEFAULT);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
